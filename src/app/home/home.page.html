@@ -1,0 +1,17 @@
+<ion-content class="front-page" [fullscreen]="true">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title (click)="routeOption($event, 'online')" align="center">Play Game</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title (click)="routeOption($event, 'instructions')" align="center">How to Play!</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title (click)="routeOption($event, 'achievements')" align="center">Achievements</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+</ion-content>

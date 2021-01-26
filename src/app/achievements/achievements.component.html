@@ -1,0 +1,85 @@
+<ion-toolbar>
+  <ion-button color="light" size="small" (click)="goBack()" slot="start">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+  </ion-button>
+  <ion-title align="center">Achievments</ion-title>
+  <ion-button *ngIf="isLoggedIn" (click)="logOut()" size="small" color="light" slot="end">logout</ion-button>
+  <ion-button *ngIf="!isLoggedIn" (click)="logIn()" size="small" color="light" slot="end">Sign up</ion-button>
+</ion-toolbar>
+
+<ion-content *ngIf="userdata">
+  <ion-card>
+    <ion-card-header>
+      <img class="circle-pic sidebyside" src="{{ userdata.imageUrl }}" /> &nbsp; &nbsp;
+      <ion-grid class="sidebyside">
+        <ion-row>
+          <ion-col>
+            <ion-input *ngIf="usernameEdit" [(ngModel)]="newUserName" placeholder="New User name"></ion-input>
+            <ion-button *ngIf="usernameEdit" (click)="updateUsername()" class="sidebyside" color="light">Update
+            </ion-button>
+            <ion-button *ngIf="usernameEdit" (click)="cancelUserNameUpdate()" class="sidebyside" color="light">Cancel
+            </ion-button>
+            <ion-card-title *ngIf="!usernameEdit" class="sidebyside">{{ userdata.username }}</ion-card-title>
+          </ion-col>
+          <ion-icon *ngIf="isEditable" (click)="editUserName()" class="sidebyside" name="create-outline"></ion-icon>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <ion-card-subtitle>Level : {{ userdata.level }}</ion-card-subtitle>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-header>
+  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        Game Played:
+      </ion-col>
+      <ion-col>
+        : {{ userdata.played }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        Games Won:
+      </ion-col>
+      <ion-col>
+        : {{ userdata.won }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        Games Lost
+      </ion-col>
+      <ion-col>
+        : {{ userdata.lost }}
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        Games Draw
+      </ion-col>
+      <ion-col>
+        : {{userdata.played - (userdata.won + userdata.lost)}}
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="center">
+    <p>Progress</p>
+    <ion-progress-bar class="sidebyside" color="secondary" value="{{ (userdata.points % 100) / 100 }}" buffer="{{ 100 - (userdata.points % 100) }}"></ion-progress-bar>
+    <p *ngIf="nextLevel">Points needed for level <strong>{{ nextLevel }}</strong>: {{ 100 - (userdata.points % 100) }}</p>
+    Hints remaining : {{ getHintsRemanining() }}
+  </div>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        Hints remaining
+      </ion-col>
+      <ion-col>
+        : {{ getHintsRemanining() }}
+      </ion-col>
+      <ion-button size="small" (click)="addHint()" color="light"> Add Hint</ion-button>
+    </ion-row>
+  </ion-grid>
+</ion-content>

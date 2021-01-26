@@ -1,0 +1,92 @@
+<ion-list *ngIf="!isStartButtonPressed">
+  <ion-list-header>
+    <ion-label>
+      Play Online
+    </ion-label>
+  </ion-list-header>
+
+  <ion-item>
+    <ion-label>Game Time</ion-label>
+    <ion-select value="3" (ionChange)="setGameTime($event);" placeholder="Select Time">
+      <ion-select-option value="3">3 Minutes</ion-select-option>
+      <ion-select-option value="5">5 Minutes</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Player Type</ion-label>
+    <ion-select value="random" (ionChange)="setPlayerTime($event);" placeholder="Select Player">
+      <ion-select-option value="friend">Play with Friends</ion-select-option>
+      <ion-select-option value="random">Play Randomly</ion-select-option>
+      <ion-select-option value="ai">Play against AI</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <div *ngIf="isFriend">
+    <ion-item>
+      <ion-label>Search Friend </ion-label>
+      <ion-input [(ngModel)]="friendName" placeholder="friend name"></ion-input>
+      <ion-button (click)="searchFriend()" clear slot="end" color="light">Search</ion-button>
+    </ion-item>
+  </div>
+</ion-list>
+
+<div *ngIf="isStartButtonPressed">
+  <!-- <ion-img class="opacity" src="../assets/images/white.png"></ion-img> -->
+  <h2 class="centralize">Waiting for players to Join</h2>
+</div>
+
+<ion-list *ngIf="searchResult">
+  <ion-list-header>
+    Search Result
+  </ion-list-header>
+
+  <ion-item *ngIf="searchResult">
+    <ion-avatar slot="start">
+      <img src="{{ searchResult.imageUrl }}">
+    </ion-avatar>
+    <ion-label>
+      <h2> {{ searchResult.username }} </h2>
+      <p> {{ searchResult.level }} </p>
+    </ion-label>
+    <ion-button *ngIf="!searchResult.is_busy" (click)="sendInvitationRequest(searchResult.username)" clear slot="end"
+      color="light">
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-button>
+    <ion-button *ngIf="searchResult.is_busy" clear slot="end" color="light">
+      In a Game
+    </ion-button>
+  </ion-item>
+</ion-list>
+
+<ion-content *ngIf="friendList">
+  <ion-list>
+    <ion-list-header>
+      Recently Played
+      <ion-button (click)="refreshRecentFriends()" color="medium">
+        <ion-icon name="reload-outline"></ion-icon>
+      </ion-button>
+    </ion-list-header>
+
+    <ion-item *ngFor="let friend of friendList">
+      <ion-avatar slot="start">
+        <img src="{{ friend.imageUrl }}">
+      </ion-avatar>
+      <ion-label>
+        <h2> {{ friend.username }} </h2>
+        <p> {{ friend.level }} </p>
+      </ion-label>
+      <ion-button *ngIf="!friend.is_busy" (click)="sendInvitationRequest(friend.username)" clear slot="end" color="light">
+        <ion-icon name="add-outline"></ion-icon>
+      </ion-button>
+      <ion-button *ngIf="friend.is_busy" clear slot="end" color="light">
+        In a Game
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-button [disabled]="isStartButtonPressed || isbuttondisabled" (click)="startGame()" clear slot="end" color="light">Start Game
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

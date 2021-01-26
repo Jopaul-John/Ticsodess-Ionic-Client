@@ -1,0 +1,15 @@
+.opacity {
+    opacity: 0.1;
+    width: 100%;
+    height: 100%;
+}
+
+.centralize {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.sidebyside {
+    display: inline-block;
+}

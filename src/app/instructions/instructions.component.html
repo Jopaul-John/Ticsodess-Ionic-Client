@@ -1,0 +1,43 @@
+<ion-content>
+  <ion-slides pager="true" scrollbar="true" [options]="slideOpts">
+    <ion-slide>
+      <h1>Game</h1>
+      <ul>
+        <li>Game Types : 3 minute game and 5 minutes game</li>
+        <ul>
+          <li>3 minute : You have total of 180 seconds to win/draw. If you fails to complete in time you loose</li>
+          <li>5 minute : You have total of 300 seconds to win/draw. If you fails to complete in time you loose</li>
+        </ul>
+        <li>Player types: Random player, Friend and AI</li>
+        <ul>
+          <li>
+            Random : Play against a random online player
+          </li>
+          <li>
+            Friend : Play against your friend (You have to <strong>login</strong> to play against your friend)
+          </li>
+          <li>
+            AI : Play against the artificial intelligence.
+          </li>
+        </ul>
+        <li>
+          Points : 10 points for a win, 0 points for draw and -10 points for a lose. If you exit the game without completing, 20 points will be deducted to ensure a smooth game
+        </li>
+      </ul>
+    </ion-slide>
+    <ion-slide>
+      <h1>How to play?</h1>
+      <ul>
+        <li>
+          Board is divided into 9 sub boards
+        </li>
+        <li>Say, if you play on 1st sub board 3rd position, your opponent has to play on the 3rd sub board. Means you control your opponents play!!</li>
+        <li>
+          If you win 3 sub board horizontally, vertically or diagonally, you win the game. 
+        </li>
+        <li> If opponent ran out of time, you win and vice versa</li>
+        <li> Hints can be used throughout the game. It shows you the next best move. To get hints, you have to watch a video from the dashboard</li>
+      </ul>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

@@ -1,0 +1,17 @@
+<h3 align="center">Login via </h3>
+<ion-grid>
+  <ion-row class="ion-align-items-center">
+    <ion-col>
+      <ion-button (click)="loginFacebook()" color="light">
+        <ion-icon size="small" name="logo-facebook"></ion-icon>&nbsp;Facebook
+      </ion-button>
+    </ion-col>
+    <ion-col>
+      <ion-button (click)="loginGoogle()" color="light">
+        <ion-icon size="small" name="logo-google"></ion-icon> &nbsp;Google
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+
+<ion-button (click)="closeModal()" size="small" align="center" color="light">Login Later</ion-button>

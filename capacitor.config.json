@@ -1,0 +1,15 @@
+{
+  "appId": "com.revo.ticsodess",
+  "appName": "ticsodessclient-ionic",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {},
+  "linuxAndroidStudioPath": "/home/jopaul/Downloads/android-studio-ide-201.6858069-linux/android-studio/bin/studio.sh"
+
+}

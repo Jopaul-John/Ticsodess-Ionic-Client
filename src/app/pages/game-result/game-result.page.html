@@ -1,0 +1,34 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-button (click)="goBack()" slot="end" size="small" color="light">Go Back</ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content *ngIf="userdata">
+  <div class="lottieplayerclass">
+    <lottie-player *ngIf="isWin" src="../../../assets/customsvg/youwin.json" background="transparent" autoplay loop speed="0.3"></lottie-player>
+  </div>
+  <div *ngIf="!isShare" class="center">
+    <h2 align="center" *ngIf="isWin"> WINNER !!!! <h3 *ngIf="isTimeOut"> by Timeout!!!</h3>
+    </h2>
+    <h2 *ngIf="!isWin && !isDraw">You Lost <h3 *ngIf="isTimeOut"> by Timeout</h3>
+    </h2>
+    <h2 *ngIf="isDraw">Its a DRAW!</h2>
+    <h5 *ngIf="isBoostPoints">{{pointsRewarded}} points will be added to you</h5>
+    <h5 *ngIf="!isBoostPoints">{{pointsRewarded}} is rewarded !!</h5>
+    <ion-progress-bar class="sidebyside" color="secondary" value="{{ (userdata.points % 100) / 100 }}"
+      buffer="{{ 100 - (userdata.points % 100) }}"></ion-progress-bar>
+    <p *ngIf="nextLevel">Points required for next level (<strong> {{ nextLevel }}</strong>) : {{ 100 - (userdata.points % 100) }}</p>
+    <ion-button *ngIf="isWin && isBoostPoints" align="center" (click)="watchRewardVideo()"> Boost Points (2x) </ion-button>
+    <ion-button *ngIf="!isWin && !isDraw && isBoostPoints" align="center" (click)="watchRewardVideo()"> Prevent loosing points
+    </ion-button>
+    <ion-button *ngIf="isDraw && isBoostPoints" align="center" (click)="watchRewardVideo()"> Get free 10 Points </ion-button>
+    <ion-button (click)="playAgain()" color="light">Play again</ion-button>
+  </div>
+  <div *ngIf="isShare" class="center">
+    <h1 align="center" > Congrats !!!! </h1>
+    <h3 >You have leveled up to  <strong>{{ userdata.level }}</strong></h3>
+    <p>Share on</p>
+    <ion-button align="center" (click)="shareInsta()" color="light"><ion-icon name="logo-instagram"></ion-icon>Instagram  </ion-button>
+    <ion-button (click)="shareFacebook()" color="light"><ion-icon name="logo-facebook"></ion-icon> Facebook</ion-button>
+  </div>
+</ion-content>

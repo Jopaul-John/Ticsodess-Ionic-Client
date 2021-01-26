@@ -1,0 +1,41 @@
+<ion-content>
+  <ion-slides *ngIf="!isBoardReady" pager="false" (ionSlideReachEnd)="startGame()" [options]="slideOpts">
+    <ion-slide>
+      <h1>Game starts in 3</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>Game starts in 2</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>Game starts in 1</h1>
+    </ion-slide>
+    <ion-slide>
+      <h1>Game starts in 0</h1>
+    </ion-slide>
+  </ion-slides>
+  <ion-toolbar *ngIf="isBoardReady">
+    <ion-button color="light" size="small" (click)="goBack()" slot="start">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-title align="center">{{ gameTitle }}</ion-title>
+    <ion-button color="light" [disabled]="!isTurn || isGameOver" (click)="showHint()" size="small" slot="end">Hint
+    </ion-button>
+  </ion-toolbar>
+  <ion-card *ngIf="isBoardReady" class="card" [ngClass]="{'border': isTurn}">
+    <ion-card-header>
+      <ion-card-subtitle>You</ion-card-subtitle>
+      <p>
+        <ion-icon name="hourglass-outline"></ion-icon> {{ getPlayerTime() }}
+      </p>
+    </ion-card-header>
+  </ion-card>
+  <ion-card *ngIf="isBoardReady" class="card" [ngClass]="{'border': !isTurn}" float-right>
+    <ion-card-header>
+      <ion-card-subtitle>{{ opponentName }}</ion-card-subtitle>
+      <p>
+        <ion-icon name="hourglass-outline"></ion-icon> {{ getOpponentTime() }}
+      </p>
+    </ion-card-header>
+  </ion-card>
+  <div class="content board" id="board_div_online" #boardInitialize></div>
+</ion-content>
